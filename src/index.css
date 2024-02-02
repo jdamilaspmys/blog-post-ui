@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/* Add this CSS in your global stylesheet or style component */
+.password-input {
+  position: relative;
+}
+
+.password-input input {
+  padding-right: 30px; /* Space for the eye icon */
+}
+
+.password-input .eye-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px; /* Adjust the right spacing */
+  transform: translateY(-50%);
+  cursor: pointer;
+}

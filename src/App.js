@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import Header from './components/Header';
+import Content from './components/Content';
+import Footer from './components/Footer';
+import PostList from './components/PostList';
+import PostDetail from './components/PostDetail';
+import PostForm from './components/PostForm';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
+import ProtectedRoute from './components/ProtectedRoute';
 
-function App() {
+
+
+const App = () => {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <>
+        <Header />
+        <Content>
+          <Routes>
+            <Route path="/" element={<PostList />} />
+            <Route path="/posts/:id" element={<PostDetail />} />
+            <Route path="/create" element={<ProtectedRoute element={<PostForm />} />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+          </Routes>
+        </Content>
+        <Footer />
+      </>
+    </Router>
   );
-}
+};
 
 export default App;
