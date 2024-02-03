@@ -18,8 +18,8 @@ const getAuthorizationHeaders = () => {
 export const getPosts = () => api.get('/posts');
 export const getPostById = (postId) => api.get(`/posts/${postId}`);
 export const createPost = (payload) => api.post('/posts', payload, {...getAuthorizationHeaders()})
-export const updatePost = (postId, payload) => api.put(`/posts/${postId}`, payload)
-export const deletePost = (postId) => api.delete(`/posts/${postId}`)
+export const updatePost = (postId, payload) => api.put(`/posts/${postId}`, payload, { ...getAuthorizationHeaders()})
+export const deletePost = (postId) => api.delete(`/posts/${postId}`, {...getAuthorizationHeaders()})
 
 // User API
 export const signIn = (payload) => api.post('/users/sign-in', payload)
