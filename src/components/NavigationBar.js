@@ -2,6 +2,7 @@ import React from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from './../AuthContext';
+import './NavigationBar.css'
 
 const NavigationBar = () => {
   const location = useLocation();
@@ -22,20 +23,22 @@ const NavigationBar = () => {
       <Nav className="mr-auto">
         <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}>Home</Link>
       </Nav>
+      <Nav className="ml-auto"> {/* Use ml-auto here */}
         <Button variant="primary" className="mr-2" onClick={handleCreatePost}>
           Create Post
         </Button>
-      {user ? (
-        <Nav className="ml-auto">
+        {user ? (
+          <>
           <span className="nav-link text-white">{user.name}</span>
-          <button className="nav-link btn btn-link text-white" onClick={signOut}>Logout</button>
-        </Nav>
-      ) : (
-        <Nav className="mr-0 ml-auto">
-          <Link to="/sign-in" className={`nav-link ${location.pathname === '/sign-in' ? 'active' : ''}`}>Sign In</Link>
-          <Link to="/sign-up" className={`nav-link ${location.pathname === '/sign-up' ? 'active' : ''}`}>Sign Up</Link>
-        </Nav>
-      )}
+          <Button className="nav-link btn btn-link text-white" onClick={signOut}>Logout</Button>
+          </>
+        ) : (
+          <>
+            <Link to="/sign-in" className={`nav-link ${location.pathname === '/sign-in' ? 'active' : ''}`}>Sign In</Link>
+            <Link to="/sign-up" className={`nav-link ${location.pathname === '/sign-up' ? 'active' : ''}`}>Sign Up</Link>
+          </>
+        )}
+      </Nav>
     </Navbar>
   );
 };
